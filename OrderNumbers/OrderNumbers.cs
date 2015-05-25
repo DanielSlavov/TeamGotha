@@ -4,9 +4,9 @@ using System.Threading;
 using System.Linq;
 using System.Text;
 
-namespace OrderNumberGame
+namespace OrderNumbers
 {
-    class Puzzel
+    class OrderNumbers
     {
         const int windowsHeight = 40;
         const int windowsWidth = 70;

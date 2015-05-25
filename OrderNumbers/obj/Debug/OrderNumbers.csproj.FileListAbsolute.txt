@@ -1,1 +1,2 @@
 c:\users\daniel\documents\visual studio 2013\Projects\OrderNumbers\OrderNumbers\bin\Debug\OrderNumbers.exe.config
+C:\Users\Daniel\Documents\GitHub\TeamGotha\OrderNumbers\bin\Debug\OrderNumbers.exe.config
