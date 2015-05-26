@@ -27,7 +27,7 @@ namespace OrderNumbers
         {
 		while (true)
 			{
-				ConsoleWindowSettings();
+				ConsoleWindowSettings(); 
 
 				Console.BufferHeight = Console.WindowHeight = windowsHeight;
 				Console.BufferWidth = Console.WindowWidth = windowsWidth;
