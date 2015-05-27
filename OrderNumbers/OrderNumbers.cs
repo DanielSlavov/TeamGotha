@@ -180,60 +180,6 @@ namespace OrderNumbers
             } while (counter < 10);
         }
 
-        private static void PrintMatrixColor(int matrixDimension, int[,] matrix, int cursorX, int cursorY, ConsoleColor color)
-        {
-            for (int i = 0; i < matrixDimension; i++)
-            {
-                Console.SetCursorPosition(cursorX, cursorY - 5 + i * 2);
-                for (int j = 0; j < matrixDimension; j++)
-                {
-                    if (i >= rowStartIndex && i <= (rowStartIndex + 1) && j >= colStartIndex && j <= (colStartIndex + 1))
-                    {
-                        Console.ForegroundColor = color;
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                    }
-                    if (matrix[i, j] == 0)
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.Write("{0,4}", "\u2588\u2588");
-                        Console.BackgroundColor = ConsoleColor.Black;
-                    }
-                    else
-                    {
-                        Console.Write("{0,4}", matrix[i, j]);
-                    }
-                }
-                Console.WriteLine();
-            }
-            Console.ForegroundColor = ConsoleColor.Gray;
-        }
-
-        private static void ExchangeValuesInShuffling(int[,] matrix)
-        {
-            int temp = matrix[rowStartIndex, colStartIndex];
-            int temp2 = matrix[rowStartIndex + 1, colStartIndex];
-            int temp3 = matrix[rowStartIndex + 1, colStartIndex + 1];
-            int temp4 = matrix[rowStartIndex, colStartIndex + 1];
-
-            if (temp3 != 0)
-            {
-                matrix[rowStartIndex, colStartIndex] = temp4;
-                matrix[rowStartIndex + 1, colStartIndex] = temp;
-                matrix[rowStartIndex + 1, colStartIndex + 1] = temp2;
-                matrix[rowStartIndex, colStartIndex + 1] = temp3;
-            }
-            else
-            {
-                matrix[rowStartIndex, colStartIndex] = temp4;
-                matrix[rowStartIndex + 1, colStartIndex] = temp;
-                //matrix[rowStartIndex + 1, colStartIndex + 1] = temp2;
-                matrix[rowStartIndex, colStartIndex + 1] = temp2;
-            }
-        }
-
         private static void PrintMatrixColor(int matrixDimension, int[,] matrix, int cursorX, int cursorY,
            ConsoleColor color)
         {
@@ -382,17 +328,31 @@ namespace OrderNumbers
 
         private static void PrintTimer(TimeSpan timeLeft, int coordinateX, int coordinateY)
         {
-
+            Console.SetCursorPosition(coordinateX, coordinateY);
+            Console.WriteLine("Time left:");
+            Console.SetCursorPosition(coordinateX + 3, coordinateY + 2);
+            if (timeLeft.Minutes == 0 && timeLeft.Seconds == -1)
+            {
+                Console.WriteLine("00:00");
+            }
+            else
+            {
+                Console.WriteLine("{0,2:00}:{1,2:00}", timeLeft.Minutes, timeLeft.Seconds);
+            }
         }
 
         private static TimeSpan RemainingTimeCalculate(TimeSpan maxTime)
         {
-
+            TimeSpan remainingTimeTS = maxTime - (DateTime.Now - startTime);
+            return remainingTimeTS;
         }
 
         private static string TimeFromStartCalculation(TimeSpan maxTime, TimeSpan remainingTime)
         {
+            TimeSpan spentTime = maxTime - remainingTime - TimeSpan.FromSeconds(1);
 
+            string elapsedTime = string.Format("{0,2:00}:{1,2:00}", spentTime.Minutes, spentTime.Seconds);
+            return elapsedTime;
         }
 
     }
