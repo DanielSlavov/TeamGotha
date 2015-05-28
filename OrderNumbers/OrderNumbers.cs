@@ -1,4 +1,3 @@
-﻿
 using System;
 using System.Threading;
 using System.Linq;
@@ -333,38 +332,137 @@ namespace OrderNumbers
 
         private static int[,] InicializeMatrix(int matrixSize)
         {
+            //Random rand = new Random ();
+            int[] numbers = new int[matrixSize * matrixSize];
+            for (int k = 0; k < numbers.Length; k++)
+            {
+                numbers[k] = k + 1;
+            }
 
+            //numbers = numbers.OrderBy (x => rand.Next ()).ToArray ();    //shuffeling numbers
+            numbers[numbers.Length - 1] = 0;
+            int count = 0;
+
+            int[,] matrix = new int[matrixSize, matrixSize];
+            for (int i = 0; i < matrixSize; i++)
+            {
+                for (int j = 0; j < matrixSize; j++)
+                {
+                    matrix[i, j] = numbers[count];
+                    count++;
+                }
+            }
+            return matrix;
         }
 
         private static void ConsoleWindowSettings()
         {
-
+            Console.Title = "..::: OrderNumbersGame :::..";
+            Console.CursorVisible = false;
         }
 
         private static void StartExitChoiceMenu()
         {
+             Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition((Console.WindowWidth - "..::: SEQUENCE NUMBERS GAME :::..".Length) / 2,
+                Console.WindowHeight / 2 - 5);
+            Console.WriteLine("..::: ORDER NUMBERS GAME :::..");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 5, Console.WindowHeight / 2 - 2);
+            Console.WriteLine("Commands:");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 16, Console.WindowHeight / 2);
+            Console.WriteLine("to START new game - type \"start\"");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 16, Console.WindowHeight / 2 + 2);
+            Console.WriteLine("for EXIT - type \"exit\"");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 10, Console.WindowHeight / 2 + 4);
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("Enter command here:");
 
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 3, Console.WindowHeight / 2 + 5);
+            string command = Console.ReadLine();
+
+            try
+            {
+                if ((command != "start") && (command != "exit"))
+                {
+                    throw new ArgumentException();
+                }
+            }
+            catch (ArgumentException)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.SetCursorPosition(Console.WindowWidth / 2 - 13, Console.WindowHeight / 2 + 7);
+                Console.WriteLine("Invalid command! Input command again!");
+                Thread.Sleep(800);
+                Console.Clear();
+                StartExitChoiceMenu();
+            }
+
+            if (command == "exit")
+            {
+                Environment.Exit(0);
+            }
+
+            Console.Clear();
         }
 
         private static void HelpTextShowHide()
         {
-
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2);
+            Console.WriteLine("to SHOW Help menu press \"S\"");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 + 1);
+            Console.WriteLine("to HIDE Help menu press \"H\"");
         }
 
         private static void PrintHelpMenu()
         {
-
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 + 3);
+            Console.WriteLine("Game OBJECTIVE: placing numbers");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 + 4);
+            Console.WriteLine("from 1 to 15 in sequence,");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 + 5);
+            Console.WriteLine("before the time is out!");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 + 6);
+            Console.WriteLine("To MOVE numbers use ARROWS BUTTONS");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 + 7);
+            Console.WriteLine("To move UPPER number press DOWN ARROW");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 + 8);
+            Console.WriteLine("To move BOTTOM number press UP ARROW");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 + 9);
+            Console.WriteLine("To move LEFT number press RIGHT ARROW");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 + 10);
+            Console.WriteLine("To move RIGHT number press LEFT ARROW");
         }
 
         private static int CheckOrderedElementsPercents(int[,] matrix)
         {
-
+            int matrixDimention = matrix.GetLength(0);
+            int currentOrderedElement = 0;
+            int countOrderedElements = 0;
+            for (int row = 0; row < matrixDimention - 1; row++)
+            {
+                for (int col = 0; col < matrixDimention; col++)
+                {
+                    currentOrderedElement++;
+                    if (matrix[row, col] == currentOrderedElement)
+                    {
+                        countOrderedElements++;
+                    }
+                }
+            }
+            int orderedElementPercetage = (countOrderedElements * 100) / (int)Math.Pow(matrixDimention, 2);
+            return orderedElementPercetage;
         }
 
         private static void PrintPercentageOfOrderedElements(int percentageOfOrderedElemnts, int coordinateX,
             int coordinateY)
         {
-
+            Console.SetCursorPosition(coordinateX, coordinateY);
+            Console.WriteLine("Ordered: {0}%", percentageOfOrderedElemnts);
         }
 
         private static void PrintTimer(TimeSpan timeLeft, int coordinateX, int coordinateY)
