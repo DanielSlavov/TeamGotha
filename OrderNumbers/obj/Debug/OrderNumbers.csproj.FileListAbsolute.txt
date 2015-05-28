@@ -2,3 +2,9 @@ c:\users\daniel\documents\visual studio 2013\Projects\OrderNumbers\OrderNumbers\
 C:\Users\Daniel\Documents\GitHub\TeamGotha\OrderNumbers\bin\Debug\OrderNumbers.exe.config
 E:\Project\TeamGotha\OrderNumbers\bin\Debug\OrderNumbers.exe.config
 E:\Project\TeamGotha\OrderNumbers\obj\Debug\OrderNumbers.csprojResolveAssemblyReference.cache
+C:\Users\K_r_i_s_i_\Documents\GitHub\SoftUni\TeamGotha\trunk\OrderNumbers\bin\Debug\OrderNumbers.exe.config
+C:\Users\K_r_i_s_i_\Documents\GitHub\SoftUni\TeamGotha\trunk\OrderNumbers\bin\Debug\OrderNumbers.exe
+C:\Users\K_r_i_s_i_\Documents\GitHub\SoftUni\TeamGotha\trunk\OrderNumbers\bin\Debug\OrderNumbers.pdb
+C:\Users\K_r_i_s_i_\Documents\GitHub\SoftUni\TeamGotha\trunk\OrderNumbers\obj\Debug\OrderNumbers.csprojResolveAssemblyReference.cache
+C:\Users\K_r_i_s_i_\Documents\GitHub\SoftUni\TeamGotha\trunk\OrderNumbers\obj\Debug\OrderNumbers.exe
+C:\Users\K_r_i_s_i_\Documents\GitHub\SoftUni\TeamGotha\trunk\OrderNumbers\obj\Debug\OrderNumbers.pdb
