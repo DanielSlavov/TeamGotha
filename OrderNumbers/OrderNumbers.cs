@@ -233,7 +233,81 @@ namespace OrderNumbers
                 matrix[rowStartIndex, colStartIndex + 1] = temp2;
             }
         }
-
+        private static void PrintMatrix(int matrixDimension, int[,] matrix, int cursorX, int cursorY, int row, int col)//
+        {
+            for (int i = 0; i < matrixDimension; i++)
+            {
+                Console.SetCursorPosition(cursorX, cursorY - 5 + i * 2);
+                for (int j = 0; j < matrixDimension; j++)
+                {
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    if (matrix[i, j] == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("{0,4}", "\u2588\u2588");
+                    }
+                    else if ((i == row - 1) && (j == col) || (i == row) && (j == col - 1) || (i == row) && (j == col + 1) ||
+                             (i == row + 1) && (j == col))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write("{0,4}", matrix[i, j]);
+                    }
+                    else
+                    {
+                        Console.Write("{0,4}", matrix[i, j]);
+                    }
+                } // end inner for loop
+                Console.WriteLine();
+            } // end for loop
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
+        private static void PrintHelpNumbersArrows(int indZeroX, int indZeroY)//
+        {
+            if (indZeroY != 0)
+            {
+                int temp = matrix[indZeroX, indZeroY - 1];
+                PrintActiveArrows(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 - 5, temp, "RIGHT");
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            else
+            {
+                PrintInactiveArrows(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 - 5, "RIGHT");
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            if (indZeroY != 3)
+            {
+                int temp = matrix[indZeroX, indZeroY + 1];
+                PrintActiveArrows(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 - 4, temp, "LEFT");
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            else
+            {
+                PrintInactiveArrows(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 - 4, "LEFT");
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            if (posZeroX != 3)
+            {
+                int temp = matrix[indZeroX + 1, indZeroY];
+                PrintActiveArrows(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 - 3, temp, "UP");
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            else
+            {
+                PrintInactiveArrows(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 - 3, "UP");
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            if (posZeroX != 0)
+            {
+                int temp = matrix[indZeroX - 1, indZeroY];
+                PrintActiveArrows(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 - 2, temp, "DOWN");
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            else
+            {
+                PrintInactiveArrows(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 - 2, "DOWN");
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+        }
         private static void PrintActiveArrows(int x, int y, int matrixElement, string arrow)
         {
             Console.SetCursorPosition(x, y);
@@ -256,10 +330,6 @@ namespace OrderNumbers
             Console.Write(arrow);
         }
 
-        private static void ExchangeValuesInShuffling(int[,] matrix)
-        {
-
-        }
 
         private static int[,] InicializeMatrix(int matrixSize)
         {
